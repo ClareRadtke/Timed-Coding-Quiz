@@ -1,5 +1,6 @@
 const questionEl = document.getElementById("question-text");
 const startBtnEl = document.getElementById("start-btn");
+const INITIAL_DURATION = 5 * 60; // Sets the initial timer duration in seconds
 // Question array:
 const questions = [
   {
@@ -52,42 +53,35 @@ function dispQnA() {
   // [0, 1, 2, 3] want to randomise this and set the random index to the li innerHTML
 }
 startBtnEl.addEventListener("click", dispQnA);
-
+startBtnEl.addEventListener("click", startTimer);
 //TIMER CODE
 let timeCountDownEl = document.getElementById("time-counter");
-
-let timerCount = (timeCountDownEl.innerHTML = "5:00");
 let timer;
 
-//Timer functions
-// function startTimer() {
-//   timer = setInterval(function () {
-//     const timeArr = timerCount.split(/[:]+/);
-//     let minute = timeArr[0];
-//     let second = correctSeconds(timeArr[1] - 1);
-//     // reduce the minute by 1 when the seconds match "59"
-//     if (second == 59) {
-//       minute = minute - 1;
-//     }
-//     if (minute == 0 && second == 00) {
-//       // TODO hide the Q&A container and show the Results container
-//       clearInterval(timer);
-//     }
-//     timerCount = minute + ":" + second;
-//     second--;
-//   }, 1000);
-// }
+// Timer functions
+function setTimer(duration) {
+  // Seconds => mm:ss
+  const minutes = Math.floor(duration / 60);
+  const seconds = duration % 60;
+  timeCountDownEl.innerHTML =
+    minutes + ":" + seconds.toString().padStart(2, "0");
+}
 
-// function correctSeconds(second) {
-//   // reset the seconds to 59
-//   if (second < 0) {
-//     second = "59";
-//   }
-//   //add a 0 before any single digit seconds
-//   if (second < 10 && second >= 0) {
-//     second = "0" + second;
-//   }
-//   return second;
-// }
+function startTimer() {
+  let duration = INITIAL_DURATION;
+  setTimer(duration);
+  timer = setInterval(function () {
+    duration--;
+    setTimer(duration);
 
-// startBtnEl.addEventListener("click", startTimer);
+    if (duration <= 0) {
+      clearInterval(timer);
+      timesUp();
+    }
+  }, 1000);
+}
+
+function timesUp() {
+  document.getElementById("qNa").style = "display:none";
+  document.getElementById("results").style = "display:block";
+}
