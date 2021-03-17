@@ -24,37 +24,37 @@
   <body>
     <!-- Title and description container -->
     <!-- To be displayed upon page load and hidden upon click of start button -->
-    <div>
+    <div class="title-container" style="display:block">
       <h1>JavaScript Quiz</h1>
       <p>Upon clicking start you will be presented with a series of multiple choice questions relating to JavaScript.
         <br>This is a timed quiz and any wrong selections will reduce your time.
         <br>The correct answers will be displayed at the end of the quiz along with your score, remaining time and a list of highscores.
       </p>
+      <button id="start-btn" type="button">Start</button>
     </div>
-    <!-- Start button to be hidden once clicked -->
-    <button id="start-btn" type="button">Start</button>
+        
     <!-- Timer - to display to the right of Q&A container and hide after last question -->
-    <div class="timer-container">
+    <div class="timer-container" style="display:block">
       <p id="timer-text">Time Remaining: <span id="time-counter"></span></p>
     </div>
 
     <!-- Question and answer container -->
     <!-- To be hidden upon page load and displayed upon the click of start button and hidden after the final question -->
-    <div>
+    <div class="q&a-container" id="qNa" style="display:none">
       <!-- Questions -->
-      <p>QUESTION</p>
+      <p id="question-text">QUESTION</p>
       <!-- Answers -->
       <ul>
-        <li>ANSWER 1</li>
-        <li>ANSWER 2</li>
-        <li>ANSWER 3</li>
-        <li>ANSWER 4</li>
+        <li class="answer">ANSWER 1</li>
+        <li class="answer">ANSWER 2</li>
+        <li class="answer">ANSWER 3</li>
+        <li class="answer">ANSWER 4</li>
       </ul>
     </div>
 
     <!-- Results container -->
     <!-- To be hidden upon page load and displayed after the final question -->
-    <div>
+    <div class="results-container" style="display:none">
       <!-- Heading -->
       <div>
         <h2>Results</h2>
@@ -85,8 +85,8 @@
       
     </div>
     <!-- Highscore list container -->
-    <div>
-      <button>View Highscores</button>
+    <div class="highscore-list-container" style="display:none">
+      <!-- <button>View Highscores</button> -->
       <h2>Highscores</h2>
       <p>Initials, Score, Time remaining</p>
       <!-- Include Initials, score & time remaining-->
