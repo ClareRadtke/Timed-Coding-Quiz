@@ -32,10 +32,10 @@
       </p>
     </div>
     <!-- Start button to be hidden once clicked -->
-    <button>Start</button>
+    <button id="start-btn" type="button">Start</button>
     <!-- Timer - to display to the right of Q&A container and hide after last question -->
-    <div>
-      <p>Time Remaining: <span></span></p>
+    <div class="timer-container">
+      <p id="timer-text">Time Remaining: <span id="time-counter"></span></p>
     </div>
 
     <!-- Question and answer container -->
@@ -63,12 +63,12 @@
       <div>
         <p>Final Score: <span></span></p>
         <p>Time remaining: <span></span></p>
-        <label>Input your initials to save your score to the highscores</label>
-        <input>
+        <label for="initial-input">Input your initials to save your score to the highscores</label>
+        <input type="text" id="initial-input" name="initial-input">
         <button type="submit">Save</button>
         <p>Your selections and the correct answers</p>
         <!-- Clicking View button shows the questions and answers -->
-        <button>View</button>
+        <button type="button">View</button>
         <!-- Correct answers -->
         <div>
           <!-- Question format: "Q1 ____" -->
