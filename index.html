@@ -14,37 +14,92 @@
     series of JS fundamental questions
     multiple choice answers to questions 
     timer (counting down to 0)
-    Wrong / Correct message (displayed after each selection )
+    Wrong / Correct indicator (displayed after each selection )
   End screen: 
     that displays score 
     has input for initials
     submit score button
     lists out highscores (localStorage)
 -->
-<!--
-  JS Fundamental questions:
-  Q: 1 What are the 3 types of variable declaration you can use?
-    A: var, let, const (correct)
-    A: variable, declaration, let
-    A: Var, Const, Dec
-    A: var, declare, create
-
-  Q: JavaScript has six data types, they are:
-    A: Boolean, String, Number, undefined, BigInt, Symbol (correct)
-    A: Object, Function, Number, String, Boolean, NaN
-    A: null, Function, Array, Boolean, String, Object
-    A: Number, variable, Function, Array, Item, Declaration
-
-  Q:
-
-  Q:
-
-  Q:
--->
-
   <body>
-
+    <!-- Title and description container -->
+    <!-- To be displayed upon page load and hidden upon click of start button -->
+    <div>
+      <h1>JavaScript Quiz</h1>
+      <p>Upon clicking start you will be presented with a series of multiple choice questions relating to JavaScript.
+        <br>This is a timed quiz and any wrong selections will reduce your time.
+        <br>The correct answers will be displayed at the end of the quiz along with your score, remaining time and a list of highscores.
+      </p>
+    </div>
+    <!-- Start button to be hidden once clicked -->
     <button>Start</button>
+
+    <!-- Question and answer container -->
+    <!-- To be hidden upon page load and displayed upon the click of start button and hidden after the final question -->
+    <div>
+      <!-- Questions -->
+      <p>QUESTION</p>
+      <!-- Answers -->
+      <ul>
+        <li>ANSWER 1</li>
+        <li>ANSWER 2</li>
+        <li>ANSWER 3</li>
+        <li>ANSWER 4</li>
+      </ul>
+    </div>
+
+    <!-- Results container -->
+    <!-- To be hidden upon page load and displayed after the final question -->
+    <div>
+      <!-- Heading -->
+      <div>
+        <h2>Results</h2>
+      </div>
+      <!-- Final score, remaining time and Initials input -->
+      <div>
+        <p>Final Score: <span></span></p>
+        <p>Time remaining: <span></span></p>
+        <label>Input your initials to save your score to the highscores</label>
+        <input>
+        <button type="submit">Save</button>
+        <p>Your selections and the correct answers</p>
+        <!-- Clicking View button shows the questions and answers -->
+        <button>View</button>
+        <!-- Correct answers -->
+        <div>
+          <!-- Question format: "Q1 ____" -->
+          <p>Question: Q1 ...</p>
+          <!-- Answers format: "____" highlight correct answer green, add "correct answer" and "you selected" to the respective answers -->
+          <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+    <!-- Highscore list container -->
+    <div>
+      <button>View Highscores</button>
+      <h2>Highscores</h2>
+      <p>Initials, Score, Time remaining</p>
+      <!-- Include Initials, score & time remaining-->
+      <ol>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ol>
+    </div>
+    
 
     <script src="assets/scripts/script.js"></script>
   </body>
