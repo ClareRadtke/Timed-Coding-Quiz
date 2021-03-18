@@ -24,7 +24,7 @@
   <body>
     <!-- Title and description container -->
     <!-- To be displayed upon page load and hidden upon click of start button -->
-    <div class="title-container" style="display:block">
+    <div class="title-container" >
       <h1>JavaScript Quiz</h1>
       <p>Upon clicking start you will be presented with a series of multiple choice questions relating to JavaScript.
         <br>This is a timed quiz and any wrong selections will reduce your time.
@@ -42,13 +42,13 @@
     <!-- To be hidden upon page load and displayed upon the click of start button and hidden after the final question -->
     <div class="q&a-container" id="qNa" style="display:none">
       <!-- Questions -->
-      <p id="question-text">QUESTION</p>
+      <p id="question-text"></p>
       <!-- Answers -->
       <ul>
-        <li class="answer" id="A1">ANSWER 1</li>
-        <li class="answer" id="A2">ANSWER 2</li>
-        <li class="answer">ANSWER 3</li>
-        <li class="answer">ANSWER 4</li>
+        <li class="answer" id="A1"></li>
+        <li class="answer" id="A2"></li>
+        <li class="answer" id="A3"></li>
+        <li class="answer" id="A4"></li>
       </ul>
     </div>
 
@@ -69,6 +69,7 @@
         <p>Your selections and the correct answers</p>
         <!-- Clicking View button shows the questions and answers -->
         <button type="button">View</button>
+        <button type="button" id="restart-btn">Restart</button>
         <!-- Correct answers -->
         <div>
           <!-- Question format: "Q1 ____" -->
