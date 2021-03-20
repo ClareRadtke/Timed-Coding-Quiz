@@ -70,6 +70,13 @@ const questions = [
   },
 ];
 
+const answerMapping = {
+  A1: 0,
+  A2: 1,
+  A3: 2,
+  A4: 3,
+};
+
 const scorePerAnswer = 100 / questions.length;
 
 // When answer selected display next question and save the selection to session storage
@@ -232,7 +239,7 @@ for (let i = 0; i < questions.length; i++) {
   clnOutcomesContainer.querySelector(".outcome-question").innerHTML =
     questions[i].question;
   clnOutcomesContainer.querySelector(".outome-correct").innerHTML =
-    questions[i].correctAnswer;
+    questions[i].answers[answerMapping[questions[i].correctAnswer]];
   outcomesEl.appendChild(clnOutcomesContainer);
 }
 
