@@ -1,6 +1,4 @@
 //TODO:
-// list out the Q and answers in results
-// identify the correct answer and the selected answer in results
 // save score, initials, remaining time to highscore list
 // display highscore list
 // decide how to access highscore list
@@ -8,6 +6,7 @@
 const questionEl = document.getElementById("question-text");
 const startBtnEl = document.getElementById("start-btn");
 const restartBtnEl = document.getElementById("restart-btn");
+const viewOutcomesBtn = document.getElementById("outcomes-btn");
 const titleSection = document.querySelector(".title-container");
 const QnASection = document.getElementById("qNa");
 const resultsSection = document.getElementById("results");
@@ -151,11 +150,14 @@ function stopQuiz() {
 // Return to the Title section & hide everything else when Restart button clicked
 restartBtnEl.addEventListener("click", returnHome);
 
-// combined the restart button click events
+// Combined the restart button click events
 function returnHome() {
   titleShow();
   resultsHide();
 }
+
+// Show or hide outcomes
+viewOutcomesBtn.addEventListener("click", outcomesToggle);
 
 //Hide or show the title section
 function titleShow() {
@@ -187,6 +189,17 @@ function timerShow() {
 }
 function timerHide() {
   timerSection.style.display = "none";
+}
+
+//Hide or show outcomes
+function outcomesToggle() {
+  if (outcomesEl.style.display === "block") {
+    outcomesEl.style.display = "none";
+    viewOutcomesBtn.innerHTML = "View";
+  } else {
+    outcomesEl.style.display = "block";
+    viewOutcomesBtn.innerHTML = "Hide";
+  }
 }
 
 // Timer functions
@@ -232,10 +245,8 @@ function stopTimer() {
 }
 
 // Showing the questions, correct answers and user selections
-
 function setOutcomes() {
   for (let i = 0; i < questions.length; i++) {
-    console.log(i);
     const clnOutcomesContainer = outcomesContainer.cloneNode(true);
     // Display the clones but not the template
     clnOutcomesContainer.style.display = "block";
@@ -252,6 +263,3 @@ function setOutcomes() {
     outcomesEl.appendChild(clnOutcomesContainer);
   }
 }
-
-// Get saved data from sessionStorage
-// let data = sessionStorage.getItem('key');
