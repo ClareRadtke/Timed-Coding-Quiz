@@ -70,8 +70,7 @@ function showNextQuestion(event) {
   console.log("Session Storage object: ", userSelections);
   currentQuestion++;
   if (currentQuestion >= questions.length) {
-    qnaShow();
-    resultsShow();
+    stopQuiz();
   } else {
     showQuestion(currentQuestion);
   }
@@ -105,6 +104,12 @@ function startQuiz() {
   showQuestion(currentQuestion);
   startTimer();
   titleHide();
+}
+
+function stopQuiz() {
+  qnaHide();
+  resultsShow();
+  stopTimer();
 }
 
 // Return to the Title section & hide everything else when Restart button clicked
@@ -166,8 +171,5 @@ function startTimer() {
     }
   }, 1000);
 }
-// Display results when timer reaches 0
-function timesUp() {
-  qnaHide();
-  resultsShow();
-}
+
+function stopTimer() {}
