@@ -1,6 +1,4 @@
 //TODO:
-// calculate score
-// display score in results
 // list out the Q and answers in results
 // identify the correct answer and the selected answer in results
 // save score, initials, remaining time to highscore list
@@ -16,13 +14,15 @@ const resultsSection = document.getElementById("results");
 const timeRemaining = document.getElementById("time-remaining");
 const INITIAL_DURATION = 5 * 60; // Sets the initial timer duration in seconds
 const timerSection = document.querySelector(".timer-container");
+const totalScore = document.getElementById("total-score");
+const WrongOrCorrect = document.getElementById("user-selection-outcome");
 
 let timeCountDownEl = document.getElementById("time-counter");
 let timer;
 let currentQuestion;
 let userSelections = window.sessionStorage;
 let duration;
-
+let score = 0;
 // Question array:
 const questions = [
   {
@@ -60,13 +60,15 @@ const questions = [
     question: "How are the variable declarations const and let used?",
     answers: [
       "No difference they are used interchangeably.",
-      "let is used when a variable will not be reassigned./n const is used when a variable will require reassigning.",
-      "let is used when a variable will require reassigning./n const is used when a variable will not be reassigned.",
+      "let is used when a variable will not be reassigned. const is used when a variable will require reassigning.",
+      "let is used when a variable will require reassigning. const is used when a variable will not be reassigned.",
       "let and const are not used to declare variables, only var is used.",
     ],
     correctAnswer: "A3",
   },
 ];
+
+const scorePerAnswer = 100 / questions.length;
 
 // When answer selected display next question and save the selection to session storage
 function handleUserSelection(event) {
@@ -81,6 +83,11 @@ function handleUserSelection(event) {
       duration = 0;
       stopQuiz();
     }
+  }
+  // Calculate the score
+  if (event.target.id === questions[currentQuestion].correctAnswer) {
+    score = score + scorePerAnswer;
+    console.log("current score: ", score);
   }
   // Save the user selections to the session storage (to be displayed on results page)
   // sessionStorage.setItem("key", "value")
@@ -201,8 +208,14 @@ function startTimer() {
 
 function stopTimer() {
   clearInterval(timer);
+  // Display the remaining time in results
   timeRemaining.innerHTML = formatTime(duration);
+  // Display the total score in results
+  totalScore.innerHTML = score;
   // Save the remaining time to the session storage
   // sessionStorage.setItem("key", "value")
   userSelections.setItem("timeRemaining", duration);
+  // Save the total score to the session storage
+  userSelections.setItem("score", score);
+  console.log(userSelections);
 }
