@@ -1,5 +1,4 @@
 //TODO:
-// save remaining time to session storage
 // calculate score
 // display score in results
 // list out the Q and answers in results
@@ -15,7 +14,7 @@ const titleSection = document.querySelector(".title-container");
 const QnASection = document.getElementById("qNa");
 const resultsSection = document.getElementById("results");
 const timeRemaining = document.getElementById("time-remaining");
-const INITIAL_DURATION = 2 * 60; // Sets the initial timer duration in seconds
+const INITIAL_DURATION = 5 * 60; // Sets the initial timer duration in seconds
 const timerSection = document.querySelector(".timer-container");
 
 let timeCountDownEl = document.getElementById("time-counter");
@@ -71,19 +70,27 @@ const questions = [
 
 // When answer selected display next question and save the selection to session storage
 function handleUserSelection(event) {
+  // Check was the correct answer selected and if not then reduce time by 30 seconds
+  if (event.target.id != questions[currentQuestion].correctAnswer) {
+    console.log(
+      "wrong! correct answer: ",
+      questions[currentQuestion].correctAnswer
+    );
+    duration -= 30;
+    if (duration <= 29) {
+      duration = 0;
+      stopQuiz();
+    }
+  }
   // Save the user selections to the session storage (to be displayed on results page)
   // sessionStorage.setItem("key", "value")
   userSelections.setItem(currentQuestion, event.target.id);
-  console.log("Session Storage object: ", userSelections);
+
   currentQuestion++;
   if (currentQuestion >= questions.length) {
     stopQuiz();
   } else {
     showQuestion(currentQuestion);
-  }
-  // Check was the correct answer selected and if not then reduce time by 30 seconds
-  if (event.target.id != questions[currentQuestion].correctAnswer) {
-    duration -= 30;
   }
 }
 
@@ -110,6 +117,7 @@ startBtnEl.addEventListener("click", startQuiz);
 // Display the Q&A container when start is clicked
 function startQuiz() {
   qnaShow();
+  timerShow();
   // document.getElementById("qNa").style = "display:block";
   currentQuestion = 0;
   showQuestion(currentQuestion);
@@ -194,4 +202,7 @@ function startTimer() {
 function stopTimer() {
   clearInterval(timer);
   timeRemaining.innerHTML = formatTime(duration);
+  // Save the remaining time to the session storage
+  // sessionStorage.setItem("key", "value")
+  userSelections.setItem("timeRemaining", duration);
 }
