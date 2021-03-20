@@ -1,10 +1,8 @@
 //TODO:
-// stop timer when Q&ASection display=none
 // timer minus 30 sec when wrong answer
 // save remaining time to session storage
 // calculate score
 // display score in results
-// display remaining time in results
 // list out the Q and answers in results
 // identify the correct answer and the selected answer in results
 // save score, initials, remaining time to highscore list
@@ -17,9 +15,15 @@ const restartBtnEl = document.getElementById("restart-btn");
 const titleSection = document.querySelector(".title-container");
 const QnASection = document.getElementById("qNa");
 const resultsSection = document.getElementById("results");
+const timeRemaining = document.getElementById("time-remaining");
 const INITIAL_DURATION = 2 * 60; // Sets the initial timer duration in seconds
+const timerSection = document.querySelector(".timer-container");
 
+let timeCountDownEl = document.getElementById("time-counter");
+let timer;
 let currentQuestion;
+
+let duration;
 
 // Question array:
 const questions = [
@@ -110,6 +114,7 @@ function stopQuiz() {
   qnaHide();
   resultsShow();
   stopTimer();
+  timerHide();
 }
 
 // Return to the Title section & hide everything else when Restart button clicked
@@ -137,7 +142,7 @@ function qnaHide() {
   QnASection.style.display = "none";
 }
 
-//Hide or show Results display
+//Hide or show Results
 function resultsShow() {
   resultsSection.style.display = "block";
 }
@@ -145,21 +150,28 @@ function resultsHide() {
   resultsSection.style.display = "none";
 }
 
-//TIMER CODE
-let timeCountDownEl = document.getElementById("time-counter");
-let timer;
+//Hide or show timer
+function timerShow() {
+  timerSection.style.display = "block";
+}
+function timerHide() {
+  timerSection.style.display = "none";
+}
 
 // Timer functions
-function setTimer(duration) {
+function formatTime(duration) {
   // Seconds => mm:ss
   const minutes = Math.floor(duration / 60);
   const seconds = duration % 60;
-  timeCountDownEl.innerHTML =
-    minutes + ":" + seconds.toString().padStart(2, "0");
+  return minutes + ":" + seconds.toString().padStart(2, "0");
+}
+
+function setTimer(duration) {
+  timeCountDownEl.innerHTML = formatTime(duration);
 }
 
 function startTimer() {
-  let duration = INITIAL_DURATION;
+  duration = INITIAL_DURATION;
   setTimer(duration);
   timer = setInterval(function () {
     duration--;
@@ -167,9 +179,12 @@ function startTimer() {
 
     if (duration <= 0) {
       clearInterval(timer);
-      timesUp();
+      stopQuiz();
     }
   }, 1000);
 }
 
-function stopTimer() {}
+function stopTimer() {
+  clearInterval(timer);
+  timeRemaining.innerHTML = formatTime(duration);
+}
