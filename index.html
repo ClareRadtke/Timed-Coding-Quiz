@@ -65,7 +65,7 @@
         <p>Time remaining: <span id="time-remaining"></span></p>
         <label for="initial-input">Input your initials to save your score to the highscores</label>
         <input type="text" id="initial-input" name="initial-input">
-        <button type="submit">Save</button>
+        <button type="button" id="save-btn">Save</button>
         <p>Your selections and the correct answers</p>
         <!-- Clicking View button shows the questions and answers -->
         <button type="button" id="outcomes-btn">View</button>
@@ -87,22 +87,13 @@
       
     </div>
     <!-- Highscore list container -->
-    <div class="highscore-list-container" style="display:none">
+    <div class="highscore-list-container" style="display:display">
       <!-- <button>View Highscores</button> -->
       <h2>Highscores</h2>
       <p>Initials, Score, Time remaining</p>
       <!-- Include Initials, score & time remaining-->
-      <ol>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+      <ol id="highScores-list">
+        <li id="user-highscore" style="display:none">User: <span class="initials"></span>, Score: <span class="highscore-score"></span>, Remaining Time: <span class="highscore-time"></span></li>
       </ol>
     </div>
     

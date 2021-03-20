@@ -1,12 +1,13 @@
 //TODO:
-// save score, initials, remaining time to highscore list
-// display highscore list
+// resolve duplicate output error if saving again
+// sort the highscores to be 1st higest time remaining & score etc
 // decide how to access highscore list
 
 const questionEl = document.getElementById("question-text");
 const startBtnEl = document.getElementById("start-btn");
 const restartBtnEl = document.getElementById("restart-btn");
 const viewOutcomesBtn = document.getElementById("outcomes-btn");
+const saveBtn = document.getElementById("save-btn");
 const titleSection = document.querySelector(".title-container");
 const QnASection = document.getElementById("qNa");
 const resultsSection = document.getElementById("results");
@@ -18,6 +19,9 @@ const outcomesEl = document.getElementById(
   "questions-correct-answer-user-selection"
 );
 const outcomesContainer = document.querySelector(".outcome");
+const initialsInput = document.getElementById("initial-input");
+const highScoreListEl = document.getElementById("highScores-list");
+const highScoreListItem = document.getElementById("user-highscore");
 
 let timeCountDownEl = document.getElementById("time-counter");
 let timer;
@@ -25,6 +29,8 @@ let currentQuestion;
 let userSelections = window.sessionStorage;
 let duration;
 let score = 0;
+const highScores = [];
+
 // Question array:
 const questions = [
   {
@@ -247,6 +253,7 @@ function stopTimer() {
 // Showing the questions, correct answers and user selections
 function setOutcomes() {
   for (let i = 0; i < questions.length; i++) {
+    // Clone the outcomes container element
     const clnOutcomesContainer = outcomesContainer.cloneNode(true);
     // Display the clones but not the template
     clnOutcomesContainer.style.display = "block";
@@ -261,5 +268,39 @@ function setOutcomes() {
       questions[i].answers[answerMapping[questions[i].correctAnswer]];
 
     outcomesEl.appendChild(clnOutcomesContainer);
+  }
+}
+
+// Save the input initials to initials variable
+saveBtn.addEventListener("click", addHighScore);
+
+// Save highscore
+function addHighScore() {
+  let initialsEntry = "";
+  initialsEntry = initialsInput.value;
+  let newEntryTime = userSelections.getItem("timeRemaining");
+  let newEntryScore = userSelections.getItem("score");
+  const newEntry = {
+    initials: initialsEntry,
+    score: newEntryScore,
+    time: newEntryTime,
+  };
+  highScores.push(newEntry);
+  for (let i = 0; i < highScores.length; i++) {
+    // Clone the highscore list item
+    const clnHighScoreListItem = highScoreListItem.cloneNode(true);
+    // Display the clones but not the template
+    clnHighScoreListItem.style.display = "block";
+    // Display the initials
+    clnHighScoreListItem.querySelector(".initials").innerHTML =
+      highScores[i].initials;
+    // Display the score
+    clnHighScoreListItem.querySelector(".highscore-score").innerHTML =
+      highScores[i].score;
+    // Display the time
+    clnHighScoreListItem.querySelector(".highscore-time").innerHTML =
+      highScores[i].time;
+    // append the clones to the high scores list
+    highScoreListEl.appendChild(clnHighScoreListItem);
   }
 }
