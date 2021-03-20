@@ -18,6 +18,7 @@ const totalScore = document.getElementById("total-score");
 const outcomesEl = document.getElementById(
   "questions-correct-answer-user-selection"
 );
+const outcomesContainer = document.querySelector(".outcome");
 
 let timeCountDownEl = document.getElementById("time-counter");
 let timer;
@@ -225,22 +226,31 @@ function stopTimer() {
   userSelections.setItem("timeRemaining", duration);
   // Save the total score to the session storage
   userSelections.setItem("score", score);
+  // Set the outcomes section
+  setOutcomes();
   console.log(userSelections);
 }
 
 // Showing the questions, correct answers and user selections
-const outcomesContainer = document.querySelector(".outcome");
 
-questions.forEach(function (element) {});
-for (let i = 0; i < questions.length; i++) {
-  console.log(i);
-  const clnOutcomesContainer = outcomesContainer.cloneNode(true);
-  clnOutcomesContainer.style.display = "block";
-  clnOutcomesContainer.querySelector(".outcome-question").innerHTML =
-    questions[i].question;
-  clnOutcomesContainer.querySelector(".outome-correct").innerHTML =
-    questions[i].answers[answerMapping[questions[i].correctAnswer]];
-  outcomesEl.appendChild(clnOutcomesContainer);
+function setOutcomes() {
+  for (let i = 0; i < questions.length; i++) {
+    console.log(i);
+    const clnOutcomesContainer = outcomesContainer.cloneNode(true);
+    // Display the clones but not the template
+    clnOutcomesContainer.style.display = "block";
+    // Display the questions in the p tag
+    clnOutcomesContainer.querySelector(".outcome-question").innerHTML =
+      questions[i].question;
+    // Display the users selection in the 'You selected' li tag
+    clnOutcomesContainer.querySelector(".outcome-user-selection").innerHTML =
+      questions[i].answers[answerMapping[userSelections.getItem(i)]];
+    // Display the correct answer in the 'Correct answer' li tag
+    clnOutcomesContainer.querySelector(".outome-correct").innerHTML =
+      questions[i].answers[answerMapping[questions[i].correctAnswer]];
+
+    outcomesEl.appendChild(clnOutcomesContainer);
+  }
 }
 
 // Get saved data from sessionStorage
