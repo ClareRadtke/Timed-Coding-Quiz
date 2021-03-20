@@ -1,5 +1,4 @@
 //TODO:
-// timer minus 30 sec when wrong answer
 // save remaining time to session storage
 // calculate score
 // display score in results
@@ -22,7 +21,7 @@ const timerSection = document.querySelector(".timer-container");
 let timeCountDownEl = document.getElementById("time-counter");
 let timer;
 let currentQuestion;
-
+let userSelections = window.sessionStorage;
 let duration;
 
 // Question array:
@@ -30,46 +29,50 @@ const questions = [
   {
     question: "What are the 3 types of variable declaration you can use?",
     answers: [
-      "var, let, const",
       "variable, declaration, let",
       "Var, Const, Dec",
       "var, declare, create",
+      "var, let, const",
     ],
+    correctAnswer: "A4",
   },
   {
     question: "JavaScript has six primitivedata types, they are:",
     answers: [
-      "Boolean, String, Number, undefined, BigInt, Symbol",
       "Object, Function, Number, String, Boolean, NaN",
+      "Boolean, String, Number, undefined, BigInt, Symbol",
       "null, Function, Array, Boolean, String, Object",
       "Number, variable, Function, Array, Item, Declaration",
     ],
+    correctAnswer: "A2",
   },
   {
     question:
       "The following symbols +, =, !=, *, === are called what in JavaScript?",
     answers: ["Operators", "Data Types", "Variables", "Math symbols"],
+    correctAnswer: "A1",
   },
   {
     question: "The if ... else statement commonly used in JavaScript is a",
-    answers: ["Conditional", "Variable", "Function", "Object"],
+    answers: ["Variable", "Conditional", "Function", "Object"],
+    correctAnswer: "A2",
   },
   {
     question: "How are the variable declarations const and let used?",
     answers: [
-      "let is used when a variable will require reassigning./n const is used when a variable will not be reassigned. (correct)",
       "No difference they are used interchangeably.",
       "let is used when a variable will not be reassigned./n const is used when a variable will require reassigning.",
+      "let is used when a variable will require reassigning./n const is used when a variable will not be reassigned.",
       "let and const are not used to declare variables, only var is used.",
     ],
+    correctAnswer: "A3",
   },
 ];
 
 // When answer selected display next question and save the selection to session storage
-function showNextQuestion(event) {
+function handleUserSelection(event) {
   // Save the user selections to the session storage (to be displayed on results page)
   // sessionStorage.setItem("key", "value")
-  let userSelections = window.sessionStorage;
   userSelections.setItem(currentQuestion, event.target.id);
   console.log("Session Storage object: ", userSelections);
   currentQuestion++;
@@ -78,11 +81,15 @@ function showNextQuestion(event) {
   } else {
     showQuestion(currentQuestion);
   }
+  // Check was the correct answer selected and if not then reduce time by 30 seconds
+  if (event.target.id != questions[currentQuestion].correctAnswer) {
+    duration -= 30;
+  }
 }
 
 // Run displayNextQuestion function when any answer li is clicked
 document.querySelectorAll(".answer").forEach(function (element) {
-  element.addEventListener("click", showNextQuestion);
+  element.addEventListener("click", handleUserSelection);
 });
 
 // Render questions to Q&A Section
