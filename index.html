@@ -71,16 +71,17 @@
         <button type="button">View</button>
         <button type="button" id="restart-btn">Restart</button>
         <!-- Correct answers -->
-        <div>
-          <!-- Question format: "Q1 ____" -->
-          <p>Question: Q1 ...</p>
-          <!-- Answers format: "____" highlight correct answer green, add "correct answer" and "you selected" to the respective answers -->
-          <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>
+        <div id="questions-correct-answer-user-selection">
+          <container class="outcome" style="display:none">
+            <!-- Question format:  -->
+            <p class="outcome-question"></p>
+            <!-- Answers format: -->
+            <ul>
+              <li>You selected: <span class="outcome-user-selection"></span></li>
+              <li>Correct answer: <span class="outome-correct"></span></li>
+            </ul>
+          </container>
+          
         </div>
       </div>
       

@@ -15,7 +15,9 @@ const timeRemaining = document.getElementById("time-remaining");
 const INITIAL_DURATION = 5 * 60; // Sets the initial timer duration in seconds
 const timerSection = document.querySelector(".timer-container");
 const totalScore = document.getElementById("total-score");
-const WrongOrCorrect = document.getElementById("user-selection-outcome");
+const outcomesEl = document.getElementById(
+  "questions-correct-answer-user-selection"
+);
 
 let timeCountDownEl = document.getElementById("time-counter");
 let timer;
@@ -89,7 +91,7 @@ function handleUserSelection(event) {
     score = score + scorePerAnswer;
     console.log("current score: ", score);
   }
-  // Save the user selections to the session storage (to be displayed on results page)
+  // Save the user selections to the session storage
   // sessionStorage.setItem("key", "value")
   userSelections.setItem(currentQuestion, event.target.id);
 
@@ -125,7 +127,6 @@ startBtnEl.addEventListener("click", startQuiz);
 function startQuiz() {
   qnaShow();
   timerShow();
-  // document.getElementById("qNa").style = "display:block";
   currentQuestion = 0;
   showQuestion(currentQuestion);
   startTimer();
@@ -219,3 +220,21 @@ function stopTimer() {
   userSelections.setItem("score", score);
   console.log(userSelections);
 }
+
+// Showing the questions, correct answers and user selections
+const outcomesContainer = document.querySelector(".outcome");
+
+questions.forEach(function (element) {});
+for (let i = 0; i < questions.length; i++) {
+  console.log(i);
+  const clnOutcomesContainer = outcomesContainer.cloneNode(true);
+  clnOutcomesContainer.style.display = "block";
+  clnOutcomesContainer.querySelector(".outcome-question").innerHTML =
+    questions[i].question;
+  clnOutcomesContainer.querySelector(".outome-correct").innerHTML =
+    questions[i].correctAnswer;
+  outcomesEl.appendChild(clnOutcomesContainer);
+}
+
+// Get saved data from sessionStorage
+// let data = sessionStorage.getItem('key');
