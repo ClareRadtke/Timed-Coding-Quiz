@@ -1,5 +1,4 @@
 //TODO:
-// resolve duplicate output error if saving again
 // sort the highscores to be 1st higest time remaining & score etc
 // decide how to access highscore list
 
@@ -158,6 +157,7 @@ restartBtnEl.addEventListener("click", returnHome);
 
 // Combined the restart button click events
 function returnHome() {
+  score = 0;
   titleShow();
   resultsHide();
 }
@@ -286,8 +286,8 @@ function addHighScore() {
     time: newEntryTime,
   };
   highScores.push(newEntry);
-  //TODO: sort the array based on TIme and Score
-
+  // Sort the array based on Time and Score
+  sortScores(highScores);
   // Clear the highscores list prior to displaying
   highScoreListEl.innerHTML = "";
 
@@ -310,4 +310,15 @@ function addHighScore() {
     highScoreListEl.appendChild(clnHighScoreListItem);
   }
   console.log(highScores);
+}
+
+// Sort the array based on Time and Score
+function sortScores(arr) {
+  arr.sort(function (a, b) {
+    return b.time - a.time;
+  });
+  arr.sort(function (a, b) {
+    return b.score - a.score;
+  });
+  return arr;
 }
