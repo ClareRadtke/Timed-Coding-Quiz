@@ -1,8 +1,9 @@
 # Timed Coding Quiz
-A timed multiple-chice quiz on the fundamentals of JavaScript.
+A timed multiple-choice quiz on a few fundamentals of JavaScript.
+
 
 [Timed Coding Quiz](https://clareradtke.github.io/Timed-Coding-Quiz/)
-<!-- ![USer clicking through a coding quiz, entering intials to save their highscore before resetting the quiz.](inset path to screen recoring.gif "timedCodingQuizScreenRecording") -->
+![User clicking through a coding quiz, entering intials to save their highscore before resetting the quiz.](./assets/images/JSQuizScreenRecording.gif)
 
 Requirements for this application:
 
