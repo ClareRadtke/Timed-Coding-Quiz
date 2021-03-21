@@ -298,8 +298,9 @@ function addHighScore() {
     clnHighScoreListItem.querySelector(".highscore-score").innerHTML =
       highScores[i].score;
     // Display the time
-    clnHighScoreListItem.querySelector(".highscore-time").innerHTML =
-      highScores[i].time;
+    clnHighScoreListItem.querySelector(
+      ".highscore-time"
+    ).innerHTML = formatTime(highScores[i].time);
     // append the clones to the high scores list
     highScoreListEl.appendChild(clnHighScoreListItem);
   }
