@@ -1,6 +1,5 @@
 //TODO:
-// sort the highscores to be 1st higest time remaining & score etc
-// decide how to access highscore list
+// Stop save of highscore if no initials/text is entered
 
 const questionEl = document.getElementById("question-text");
 const startBtnEl = document.getElementById("start-btn");
@@ -247,7 +246,7 @@ function stopTimer() {
   userSelections.setItem("score", score);
   // Set the outcomes section
   setOutcomes();
-  console.log(userSelections);
+  // console.log(userSelections);
 }
 
 // Showing the questions, correct answers and user selections
@@ -272,7 +271,12 @@ function setOutcomes() {
 }
 
 // Save the input initials to initials variable
-saveBtn.addEventListener("click", addHighScore);
+saveBtn.addEventListener("click", saveScore);
+
+function saveScore() {
+  addHighScore();
+  initialsInput.value = "";
+}
 
 // Save highscore
 function addHighScore() {
@@ -309,7 +313,7 @@ function addHighScore() {
     // append the clones to the high scores list
     highScoreListEl.appendChild(clnHighScoreListItem);
   }
-  console.log(highScores);
+  // console.log(highScores);
 }
 
 // Sort the array based on Time and Score
