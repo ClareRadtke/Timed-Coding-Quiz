@@ -16,7 +16,7 @@ Functionality:
  - [x] HighScores list is available at end of game
 
 Additional Requirements:
-  - [] UI is intuitive and easy to navigate
+  - [x] UI is intuitive and easy to navigate
 
   - [x] Resembles mock-up functionality provided by Trilogy Education Services:
   ![A user clicks through an interactive coding quiz, then enters initials to save the high score before resetting and starting over.](./assets/images/04-web-apis-homework-demo.gif)

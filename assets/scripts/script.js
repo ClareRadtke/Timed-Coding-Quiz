@@ -133,7 +133,7 @@ function showQuestion(index) {
 // When start button clicked start timer, hide the Title section & display the Quiz
 startBtnEl.addEventListener("click", startQuiz);
 
-// combined all start button click events
+// Combined all start button click events
 // Display the Q&A container when start is clicked
 function startQuiz() {
   qnaShow();
@@ -166,9 +166,9 @@ function returnHome() {
 // Show or hide outcomes
 viewOutcomesBtn.addEventListener("click", outcomesToggle);
 
-//Hide or show the title section
+// Hide or show the title section
 function titleShow() {
-  titleSection.style.display = "inline-block";
+  titleSection.style.display = "inline-flex";
 }
 function titleHide() {
   titleSection.style.display = "none";
@@ -176,21 +176,21 @@ function titleHide() {
 
 // Hide or show the Q&A Section
 function qnaShow() {
-  QnASection.style.display = "inline-block";
+  QnASection.style.display = "inline-flex";
 }
 function qnaHide() {
   QnASection.style.display = "none";
 }
 
-//Hide or show Results
+// Hide or show Results
 function resultsShow() {
-  resultsSection.style.display = "inline-block";
+  resultsSection.style.display = "inline-flex";
 }
 function resultsHide() {
   resultsSection.style.display = "none";
 }
 
-//Hide or show timer
+// Hide or show timer
 function timerShow() {
   timerSection.style.display = "flex";
 }
@@ -198,7 +198,7 @@ function timerHide() {
   timerSection.style.display = "none";
 }
 
-//Hide or show outcomes
+// Hide or show outcomes
 function outcomesToggle() {
   if (outcomesEl.style.display === "block") {
     outcomesEl.style.display = "none";
@@ -254,6 +254,7 @@ function stopTimer() {
 
 // Showing the questions, correct answers and user selections
 function setOutcomes() {
+  outcomesEl.innerHTML = "";
   for (let i = 0; i < questions.length; i++) {
     // Clone the outcomes container element
     const clnOutcomesContainer = outcomesContainer.cloneNode(true);
@@ -302,7 +303,7 @@ function addHighScore() {
     // Clone the highscore list item
     const clnHighScoreListItem = highScoreListItem.cloneNode(true);
     // Display the clones but not the template
-    clnHighScoreListItem.style.display = "block";
+    clnHighScoreListItem.style.display = "list-item";
     // Display the initials
     clnHighScoreListItem.querySelector(".initials").innerHTML =
       highScores[i].initials;
