@@ -20,8 +20,8 @@ const outcomesContainer = document.querySelector(".outcome");
 const initialsInput = document.getElementById("initial-input");
 const highScoreListEl = document.getElementById("highScores-list");
 const highScoreListItem = document.getElementById("user-highscore");
-
 const timeCountDownEl = document.getElementById("time-counter");
+
 let timer;
 let currentQuestion;
 const userSelections = window.sessionStorage;
@@ -159,6 +159,8 @@ function returnHome() {
   score = 0;
   titleShow();
   resultsHide();
+  timeCountDownEl.style.display = "none";
+  timerShow();
 }
 
 // Show or hide outcomes
@@ -166,7 +168,7 @@ viewOutcomesBtn.addEventListener("click", outcomesToggle);
 
 //Hide or show the title section
 function titleShow() {
-  titleSection.style.display = "block";
+  titleSection.style.display = "inline-block";
 }
 function titleHide() {
   titleSection.style.display = "none";
@@ -174,7 +176,7 @@ function titleHide() {
 
 // Hide or show the Q&A Section
 function qnaShow() {
-  QnASection.style.display = "block";
+  QnASection.style.display = "inline-block";
 }
 function qnaHide() {
   QnASection.style.display = "none";
@@ -182,7 +184,7 @@ function qnaHide() {
 
 //Hide or show Results
 function resultsShow() {
-  resultsSection.style.display = "block";
+  resultsSection.style.display = "inline-block";
 }
 function resultsHide() {
   resultsSection.style.display = "none";
@@ -190,7 +192,7 @@ function resultsHide() {
 
 //Hide or show timer
 function timerShow() {
-  timerSection.style.display = "block";
+  timerSection.style.display = "flex";
 }
 function timerHide() {
   timerSection.style.display = "none";
@@ -221,6 +223,7 @@ function setTimer(duration) {
 
 function startTimer() {
   duration = INITIAL_DURATION;
+  timeCountDownEl.style.display = "block";
   setTimer(duration);
   timer = setInterval(function () {
     duration--;

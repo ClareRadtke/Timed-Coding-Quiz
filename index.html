@@ -11,80 +11,85 @@
   </head>
 
   <body>
-    <!-- Title and description container -->
-    <!-- To be displayed upon page load and hidden upon click of start button -->
-    <div class="title-container" >
-      <h1>JavaScript Quiz</h1>
-      <p>Upon clicking start you will be presented with a series of multiple choice questions relating to JavaScript.
-        <br>This is a timed quiz and any wrong selections will reduce your time by 30 seconds.
-        <br>The correct answers will be displayed at the end of the quiz along with your score, remaining time and a list of highscores.
-      </p>
-      <button id="start-btn" type="button" class="btn btn-success ">Start</button>
-    </div>
-        
-    <!-- Timer - to display to the right of Q&A container and hide after last question -->
-    <div class="timer-container">
-      <p id="timer-text">Time Remaining: <span id="time-counter"></span></p>
-    </div>
-
-    <!-- Question and answer container -->
-    <!-- To be hidden upon page load and displayed upon the click of start button and hidden after the final question -->
-    <div class="q&a-container" id="qNa" style="display:none">
-      <!-- Questions -->
-      <p id="question-text"></p>
-      <!-- Answers -->
-      <ul>
-        <li class="answer" id="A1"></li>
-        <li class="answer" id="A2"></li>
-        <li class="answer" id="A3"></li>
-        <li class="answer" id="A4"></li>
-      </ul>
-    </div>
-
-    <!-- Results container -->
-    <!-- To be hidden upon page load and displayed after the final question -->
-    <div class="results-container" id="results" style="display:none">
-      <!-- Heading -->
-      <div>
-        <h2>Results</h2>
+      <!-- Timer - to display to the right of Q&A container and hide after last question -->
+      <div class="timer-container">
+        <p id="timer-text">Time Remaining: <span id="time-counter"></span></p>
       </div>
-      <!-- Final score, remaining time and Initials input -->
-      <div>
-        <p>Final Score: <span id="total-score"></span></p>
-        <p>Time remaining: <span id="time-remaining"></span></p>
-        <label for="initial-input">Input your initials to save your score to the highscores</label>
-        <input type="text" id="initial-input" name="initial-input">
-        <button type="button" id="save-btn" class="btn btn-success">Save</button>
-        <p>Your selections and the correct answers</p>
-        <!-- Clicking View button shows the questions and answers -->
-        <button type="button" id="outcomes-btn" class="btn btn-secondary">View</button>
-        <button type="button" id="restart-btn" class="btn btn-primary">Restart</button>
-        <!-- Correct answers -->
-        <div id="questions-correct-answer-user-selection" style="display:none">
-          <container class="outcome" style="display:none">
-            <!-- Question format:  -->
-            <p class="outcome-question"></p>
-            <!-- Answers format: -->
-            <ul>
-              <li>You selected: <span class="outcome-user-selection"></span></li>
-              <li>Correct answer: <span class="outome-correct"></span></li>
-            </ul>
-          </container>
-          
-        </div>
+    
+
+    <div class="main">
+      <!-- Title and description container -->
+      <!-- To be displayed upon page load and hidden upon click of start button -->
+      <div class="title-container" >
+        <h1>JavaScript Quiz</h1>
+        <p>Upon clicking start you will be presented with a series of multiple choice questions relating to JavaScript.
+          <br>This is a timed quiz and any wrong selections will reduce your time by 30 seconds.
+          <br>The correct answers will be displayed at the end of the quiz along with your score, remaining time and a list of highscores.
+        </p>
+        <button id="start-btn" type="button" class="btn btn-success ">Start</button>
       </div>
       
+      <!-- Question and answer container -->
+      <!-- To be hidden upon page load and displayed upon the click of start button and hidden after the final question -->
+      <div class="qna-container" id="qNa" style="display:none">
+        <!-- Questions -->
+        <p id="question-text"></p>
+        <!-- Answers -->
+        <ul>
+          <li class="answer" id="A1"></li>
+          <li class="answer" id="A2"></li>
+          <li class="answer" id="A3"></li>
+          <li class="answer" id="A4"></li>
+        </ul>
+      </div>
+
+      <!-- Results container -->
+      <!-- To be hidden upon page load and displayed after the final question -->
+      <div class="results-container" id="results" style="display:none">
+        <!-- Heading -->
+        <div>
+          <h2>Results</h2>
+          <!-- Final score, remaining time and Initials input -->
+          <p>Final Score: <span id="total-score"></span></p>
+          <p>Time remaining: <span id="time-remaining"></span></p>
+          <label for="initial-input">Input your initials to save your score to the highscores</label>
+          <input type="text" id="initial-input" name="initial-input">
+          <button type="button" id="save-btn" class="btn btn-success">Save</button>
+        </div>
+        
+        <div>
+          <p>Your selections and the correct answers</p>
+          <!-- Clicking View button shows the questions and answers -->
+          <button type="button" id="outcomes-btn" class="btn btn-secondary">View</button>
+          <button type="button" id="restart-btn" class="btn btn-primary">Restart</button>
+          
+          <!-- Correct answers -->
+          <div id="questions-correct-answer-user-selection" style="display:none">
+            <container class="outcome" style="display:none">
+              <!-- Question format:  -->
+              <p class="outcome-question"></p>
+              <!-- Answers format: -->
+              <ul>
+                <li>You selected: <span class="outcome-user-selection"></span></li>
+                <li>Correct answer: <span class="outome-correct"></span></li>
+              </ul>
+            </container>
+          </div>
+        </div>
+      </div>
     </div>
+
+    
     <!-- Highscore list container -->
-    <div class="highscore-list-container" style="display:display">
-      <!-- <button>View Highscores</button> -->
-      <h2>Highscores</h2>
-      <p>Initials, Score, Time remaining</p>
-      <!-- Include Initials, score & time remaining-->
-      <ol id="highScores-list">
-        <li id="user-highscore" style="display:none">User: <span class="initials"></span>, Score: <span class="highscore-score"></span>, Remaining Time: <span class="highscore-time"></span></li>
-      </ol>
-    </div>
+    <div class="highscore-list-container" style="display:inline-block">
+    <!-- <button>View Highscores</button> -->
+    <h2>Highscores</h2>
+    <!-- <p>Initials, Score, Time remaining</p> -->
+    <!-- Include Initials, score & time remaining-->
+    <ol id="highScores-list">
+      <li id="user-highscore" style="display:none">User: <span class="initials"></span>, Score: <span class="highscore-score"></span>, Remaining Time: <span class="highscore-time"></span></li>
+    </ol>
+  </div>
     
 
     <script src="assets/scripts/script.js"></script>
