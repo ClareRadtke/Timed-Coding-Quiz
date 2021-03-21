@@ -23,10 +23,10 @@ const initialsInput = document.getElementById("initial-input");
 const highScoreListEl = document.getElementById("highScores-list");
 const highScoreListItem = document.getElementById("user-highscore");
 
-let timeCountDownEl = document.getElementById("time-counter");
+const timeCountDownEl = document.getElementById("time-counter");
 let timer;
 let currentQuestion;
-let userSelections = window.sessionStorage;
+const userSelections = window.sessionStorage;
 let duration;
 let score = 0;
 const highScores = [];
@@ -286,6 +286,11 @@ function addHighScore() {
     time: newEntryTime,
   };
   highScores.push(newEntry);
+  //TODO: sort the array based on TIme and Score
+
+  // Clear the highscores list prior to displaying
+  highScoreListEl.innerHTML = "";
+
   for (let i = 0; i < highScores.length; i++) {
     // Clone the highscore list item
     const clnHighScoreListItem = highScoreListItem.cloneNode(true);
@@ -304,4 +309,5 @@ function addHighScore() {
     // append the clones to the high scores list
     highScoreListEl.appendChild(clnHighScoreListItem);
   }
+  console.log(highScores);
 }
